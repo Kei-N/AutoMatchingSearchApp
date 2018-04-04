@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>ブックマーク管理</title>
+  </head>
+  <body class="bookmarks">
+    <div align="center">
+  	<h1>ブックマーク管理</h1>
+    <form th:action="@{/bookmarks_list}" th:object="${bookmarkForm}" method="get">
+    	<b th:if="${bookmarkList.size() == 0}">*ブックマークが登録されていません<br /></b>
+    	<b th:if="${bookmarkList.size() != 0}">～ブックマーク一覧～<br /></b>
+    	<table th:if="${bookmarkList.size() != 0}" border="1" cellspacing="0" cellpadding="2" bgcolor="white">
+			<tr th:each="bookmarkInfo : ${bookmarkList}">
+				<td class="list">
+					<font color="black" size="2">
+					<a th:href="${bookmarkInfo.url}" target="_blank">
+						<span th:text="${bookmarkInfo.title}"></span>
+					</a>
+					</font>
+				</td>
+				<td>
+					<button type="submit" name="delete_btn" th:value="${bookmarkInfo.bookmarkId}" class="delete_btn" ></button>
+				</td>
+			</tr>
+		</table>
+		<br />
+    </form>
+  	<form th:action="@{/home_first}" method="get">
+      	<input type="submit" value="" class="home_btn" />
+    </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>キーワード管理</title>
+  </head>
+  <body class="keywords">
+    <div align="center">
+  	<h1>キーワード管理</h1>
+  	<h2>『My favorite keywords』</h2>
+  	<b>自分の好きなもの・興味のあることを何でも入力してください</b><br />
+  	<b>※入力文字数は20文字以内にしてください</b><br />
+  	<form th:action="@{/keywords_input}" th:object="${keywordForm}" method="get">
+  	<p th:errors="*{all}" class="error-message">error!</p>
+  		<input type="text" th:field="*{keyword}" maxlength="20"/><br />
+      	<input type="submit" value="" class="regi_btn" />
+    </form><br />
+    <form th:action="@{/keywords_list}" th:object="${keywordForm}" method="post">
+    	<b th:if="${keywordList.size() == 0}">*キーワードが登録されていません<br /></b>
+    	<b th:if="${keywordList.size() != 0}">～キーワード一覧～<br /></b>
+    	<table th:if="${keywordList.size() != 0}" border="1" cellspacing="0" cellpadding="2" bgcolor="white">
+			<tr th:each="keywordInfo : ${keywordList}">
+				<td>
+					<font color="black" size="2">
+					<span th:text="${keywordInfo.keyword}"></span>
+					</font>
+				</td>
+				<td>
+					<button type="submit" name="delete_btn" th:value="${keywordInfo.keywordId}" class="delete_btn" ></button>
+				</td>
+			</tr>
+		</table>
+		<br />
+    </form>
+  	<form th:action="@{/home_first}" method="get">
+      	<input type="submit" value="" class="home_btn" />
+    </form>
+    </div>
+  </body>
+</html>

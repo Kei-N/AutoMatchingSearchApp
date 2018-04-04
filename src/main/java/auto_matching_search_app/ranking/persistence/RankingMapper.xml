@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+        "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="auto_matching_search_app.ranking.persistence.RankingMapper">
+
+    <!-- マッチング関心度(score)上位10件検索 -->
+    <select id="selectRankingList" resultType="auto_matching_search_app.ranking.domain.RankingInfo">
+    	SELECT matching_score_id, keyword_id_1, keyword_id_2, score FROM matching_score 
+    	WHERE user_info_id = #{userInfoId} 
+    	ORDER BY score DESC 
+    	LIMIT 10
+    </select>
+    
+    <!-- キーワード取得 -->
+    <select id="selectKeyword" resultType="String">
+    	SELECT keyword FROM keywords WHERE keyword_id = #{keywordId}
+    </select>
+    
+    <!-- マッチングキーワードID検索 -->
+    <select id="selectMatchingKeywordId" resultType="auto_matching_search_app.home.domain.MatchingInfo">
+    	SELECT keyword_id_1, keyword_id_2 FROM matching_score WHERE matching_score_id = #{matchingScoreId}
+    </select>
+    
+    <!-- マッチングキーワード存在チェック(特定のuser_info_idにおいて) -->
+    <select id="getCountByMatcningKeywords" resultType="int">
+    	SELECT COUNT(*) FROM matching_score 
+    	WHERE user_info_id = #{userInfoId} AND keyword_id_1 = #{keywordId1} AND keyword_id_2 = #{keywordId2} 
+    	OR user_info_id = #{userInfoId} AND keyword_id_1 = #{keywordId2} AND keyword_id_2 = #{keywordId1}
+    </select>
+    
+    <!-- マッチングスコア登録URLクリック時1点加算(新規キーワードペア:特定のuser_info_idにおいて) -->
+	<insert id="insertMatchingScore1Point">
+        INSERT INTO matching_score (user_info_id, keyword_id_1, keyword_id_2, score, inp_date) 
+		VALUES (#{userInfoId}, #{keywordId1}, #{keywordId2}, 1, CURRENT_DATE())
+    </insert>
+    
+    <!-- マッチングスコア登録ブックマーク保存時3点加算(新規キーワードペア:特定のuser_info_idにおいて) -->
+	<insert id="insertMatchingScore3Point">
+        INSERT INTO matching_score (user_info_id, keyword_id_1, keyword_id_2, score, inp_date) 
+		VALUES (#{userInfoId}, #{keywordId1}, #{keywordId2}, 3, CURRENT_DATE())
+    </insert>
+    
+    <!-- マッチングスコア更新URLクリック時1点加算(既存キーワードペア:特定のuser_info_idにおいて) -->
+	<update id="updateMatchingScore1Point">
+        UPDATE matching_score 
+        SET score = score + 1 
+        WHERE user_info_id = #{userInfoId} AND keyword_id_1 = #{keywordId1} AND keyword_id_2 = #{keywordId2} 
+    	OR user_info_id = #{userInfoId} AND keyword_id_1 = #{keywordId2} AND keyword_id_2 = #{keywordId1}
+    </update>
+    
+    <!-- マッチングスコア更新ブックマーク保存時3点加算(既存キーワードペア:特定のuser_info_idにおいて) -->
+	<update id="updateMatchingScore3Point">
+        UPDATE matching_score 
+        SET score = score + 3 
+        WHERE user_info_id = #{userInfoId} AND keyword_id_1 = #{keywordId1} AND keyword_id_2 = #{keywordId2} 
+    	OR user_info_id = #{userInfoId} AND keyword_id_1 = #{keywordId2} AND keyword_id_2 = #{keywordId1}
+    </update>
+    
+</mapper>

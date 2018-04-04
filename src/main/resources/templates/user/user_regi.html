@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>ユーザ登録</title>
+  </head>
+  <body class="user">
+    <div align="center" class="locate_center">
+  	<h1>ユーザ登録</h1>
+  	<b>※　は入力必須です。</b>
+    <form th:action="@{/user_regi}" th:object="${userForm}" method="post">
+    <p th:errors="*{all}" class="error-message"></p>
+    	<table>
+			<tr>
+				<th>ユーザーID　<font color="red">※</font></th>
+				<td colspan="2" align="left"><input type="text" th:field="*{userId}" th:errorclass="error-input" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<th>パスワード　<font color="red">※</font></th>
+				<td colspan="2" align="left"><input type="password" th:field="*{password}" th:errorclass="error-input" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<th>パスワード（確認用）　</th>
+				<td colspan="2" align="left"><input type="password" th:field="*{checkPw}" th:errorclass="error-input" maxlength="10"/></td>
+			</tr>
+		</table>
+		<br />
+      	<input type="submit" name="back_btn" value="" class="back_btn" />
+      	<input type="submit" name="conf_btn" value="" class="conf_btn" />
+    </form>
+    </div>
+  </body>
+</html>

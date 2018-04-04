@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>ホーム</title>
+  </head>
+  <body class="home">
+    <div align="center">
+  	<h1>自動マッチング検索アプリケーション</h1>
+  	<h2>『自分の好きに革命を ～Revolutionize your likes～』</h2>
+  	<b>※自分の好きなキーワードを入力</b><br />
+  	<form th:action="@{/keywords_first}" method="get">
+      	<input type="submit" value="" class="input_keywords_btn" />
+    </form><br />
+  	<form th:action="@{/bookmarks_first}" method="post">
+  		<b>ブックマーク一覧へ→</b>
+      	<input type="submit" value="" class="bookmarks_btn" />
+    </form><br />
+    <form th:action="@{/ranking_first}" method="get">
+    	<b>自分が興味を持ったキーワードをチェック→</b>
+      	<input type="submit" value="" class="ranking_btn" />
+    </form><br /><br />
+    <b><font color="#2C7CFF" size="7em">～自分の好きに革命を起こしてみる～</font></b>
+    <form th:action="@{/home_create}" method="get">
+      	<input type="submit" value="" class="create_btn" />
+    </form><br />
+  	<form th:action="@{/home_search_result}" th:object="${srForm}" method="post">
+    <p th:errors="*{all}" class="error-message"></p>
+    	<b th:if="${searchResultList.size() != 0}"><font color="#FF00FF" size="7em">～あなたへの新しい提案～</font></b><br />
+    	<table th:if="${searchResultList.size() != 0}" border="1" cellspacing="0" cellpadding="2" bgcolor="white">
+			<tr>
+				<th colspan="3">
+				<div align="center">
+					マッチング結果：
+					<span th:text="${matchingInfo.keyword1}"></span>
+					×
+					<span th:text="${matchingInfo.keyword2}"></span>
+				</div>
+				</th>
+			</tr>
+			<tr th:each="searchResult : ${searchResultList}">
+				<td class="list">
+					<font color="black" size="2">
+					<span th:text="${searchResult.title}"></span>
+					</font>
+				</td>
+				<!-- 
+				<td>
+					<font color="black" size="2">
+					<a th:href="${searchResult.href}" target="_blank">
+						<span th:text="${searchResult.title}"></span>
+					</a>
+					</font>
+				</td>
+				 -->
+				<td>
+					<button type="submit" name="view_btn" th:value="${searchResult.searchId}" class="view_btn" ></button>
+				</td>
+				<td>
+					<button type="submit" name="save_btn" th:value="${searchResult.searchId}" class="save_btn" ></button>
+				</td>
+			</tr>
+		</table>
+		<br />
+    </form>
+    <form th:action="@{/home_logout}" method="get">
+      	<input type="submit" value="" class="logout_btn" />
+    </form>
+    </div>
+  </body>
+</html>
+
+					<!-- 
+					<script type="text/javascript">
+						function execRequest(action, method, data) {
+					    	var form = document.createElement("form");
+						    form.setAttribute("action", action); // 投げたいURLを書く。
+						    form.setAttribute("method", method); // POSTリクエストもしくはGETリクエストを書く。
+						    form.style.display = "none"; // 画面に表示しないことを指定する
+					    	document.body.appendChild(form);
+					   	 	if (data !== undefined) {
+					        	var input = document.createElement('input');
+					    	    input.setAttribute('type', 'hidden');
+					        	input.setAttribute('name', 'name'); //「name」は適切な名前に変更する。
+					     	   	input.setAttribute('value', data);
+					        	form.appendChild(input);
+					    	}
+					   	 	form.submit();
+						}
+    				</script>
+    				 -->

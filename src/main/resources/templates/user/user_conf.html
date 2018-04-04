@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>ユーザ登録確認</title>
+  </head>
+  <body class="user">
+  	<div align="center" class="locate_center">
+  	<h1>ユーザ登録確認</h1>
+  	<br />
+  	<form th:action="@{/user_conf}" th:object="${userForm}" method="get">
+  		<table>
+			<tr>
+				<th align="left">ユーザID</th>
+				<td><span th:text="*{userId}"></span></td>
+			</tr>
+		</table>	
+		<br />
+		<input type="submit" name="back_btn" value="" class="back_btn" />
+      	<input type="submit" name="insert_btn" value="" class="regi_btn" />
+	</form>
+	</div>
+  </body>
+</html>

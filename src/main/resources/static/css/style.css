@@ -1,0 +1,234 @@
+@CHARSET "UTF-8";
+@font-face {
+	font-family	: 'APJfont';
+	src			: url(../fonts/APJfont.ttf);
+}
+/* 一般タグ */
+body {
+	font-family: APJfont;
+}
+h1{
+	font-size : 30pt;
+	color     : #0b28f4;
+}
+h2{
+	font-size : 20pt;
+	color     : #ff8000;
+}
+th{
+	font-size : 16pt;
+	color     : blue;
+	text-align: left;
+}
+b{
+	font-size : 16pt;
+	color     : red;
+}
+p{
+	color			: #ff0000;
+	text-align		: left;
+	font-size 		: 16pt;
+	border-style	: solid ;
+	border-width	: 1px;
+	background-color: #ffff80;
+	width			: 350px;
+	margin			: 10px;
+	padding			: 10px;
+}
+/* class属性「.」 */
+.list {
+  font-family		: Georgia;
+  font-weight		: bold;
+}
+.create_btn{
+    border			: 0px;
+    width			: 250px;
+    height			: 75px;
+    background		: url(../images/create.jpg) center center no-repeat;
+}
+.create_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.input_keywords_btn{
+    border			: 0px;
+    width			: 200px;
+    height			: 50px;
+    background		: url(../images/input_keywords_btn.jpg) center center no-repeat;
+}
+.input_keywords_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.login_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/login_btn.jpg) center center no-repeat;
+}
+.login_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.logout_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/logout_btn.jpg) center center no-repeat;
+}
+.logout_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.home_btn{
+    border			: 0px;
+    width			: 100px;
+    height			: 40px;
+    background		: url(../images/home_btn.jpg) center center no-repeat;
+}
+.home_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.user_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/user_btn.jpg) center center no-repeat;
+}
+.user_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.back_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/back_btn.jpg) center center no-repeat;
+}
+.back_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.conf_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/conf_btn.jpg) center center no-repeat;
+}
+.conf_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.regi_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/regi_btn.jpg) center center no-repeat;
+}
+.regi_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.bookmarks_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/bookmarks_btn.jpg) center center no-repeat;
+}
+.bookmarks_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.ranking_btn{
+    border			: 0px;
+    width			: 150px;
+    height			: 40px;
+    background		: url(../images/ranking_btn.jpg) center center no-repeat;
+}
+.ranking_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.view_btn{
+    border			: 0px;
+    width			: 50px;
+    height			: 20px;
+    background		: url(../images/view_btn.jpg) center center no-repeat;
+}
+.view_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.save_btn{
+    border			: 0px;
+    width			: 50px;
+    height			: 20px;
+    background		: url(../images/save_btn.jpg) center center no-repeat;
+}
+.save_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.delete_btn{
+    border			: 0px;
+    width			: 50px;
+    height			: 20px;
+    background		: url(../images/delete_btn.jpg) center center no-repeat;
+}
+.delete_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.research_btn{
+    border			: 0px;
+    width			: 50px;
+    height			: 20px;
+    background		: url(../images/research_btn.jpg) center center no-repeat;
+}
+.research_btn:hover{
+    cursor			: pointer;
+    opacity			: 0.8;
+}
+.error-input {
+    background-color: #FFB6C1;
+}
+.error-message {
+    color			: #FF0000;
+    font-weight		: bold;
+}
+.user {
+	background		: url("../images/user.jpg");
+	background-size	: cover;
+}
+.home {
+	background		: url("../images/home.jpg");
+	background-size	: cover;
+}
+.keywords {
+	background		: url("../images/keywords.jpg");
+	background-size	: cover;
+}
+.bookmarks {
+	background		: url("../images/bookmarks.jpg");
+	background-size	: cover;
+}
+.ranking {
+	background		: url("../images/ranking.jpg");
+	background-size	: cover;
+}
+.locate_center {
+  position			: absolute;
+  top				: 0px;
+  right				: 0px;
+  bottom			: 0px;
+  left				: 0px;
+  margin			: auto;
+  width				: 1000px;
+  height			: 500px;
+}
+/* id属性「#」 */
+#h3{
+	font-size : 14pt;
+	color     : blue;
+}

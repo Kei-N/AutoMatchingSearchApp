@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+        "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="auto_matching_search_app.bookmarks.persistence.BookmarkMapper">
+	
+	<!-- ブックマーク重複チェック(url) -->
+    <select id="getCountByBookmark" resultType="int">
+    	SELECT count(*) FROM bookmarks WHERE user_info_id = #{userInfoId} AND url = #{url}
+    </select>
+	
+	<!-- ブックマーク登録 -->
+	<insert id="insertBookmark">
+		INSERT INTO bookmarks (user_info_id, title, url, inp_date) 
+		VALUES (#{userInfoId}, #{title}, #{url}, CURRENT_DATE())
+    </insert>
+    
+    <!-- ブックマーク一覧検索 -->
+    <select id="selectBookmarkList" resultType="auto_matching_search_app.bookmarks.domain.BookmarkInfo">
+    	SELECT bookmark_id, title, url FROM bookmarks WHERE user_info_id = #{userInfoId} ORDER BY inp_date DESC
+    </select>
+	
+	<!-- ブックマーク削除 -->
+	<delete id="deleteBookmarks">
+    	DELETE FROM bookmarks WHERE bookmark_id = #{bookmarkId}
+	</delete>
+    
+</mapper>

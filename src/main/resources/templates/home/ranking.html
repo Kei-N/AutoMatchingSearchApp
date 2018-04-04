@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>ランキング</title>
+  </head>
+  <body class="ranking">
+    <div align="center">
+  	<h1>ランキング</h1>
+    <form th:action="@{/ranking_list}" th:object="${rankingForm}" method="get">
+    	<b th:if="${rankingList.size() == 0}">*ランキングがありません<br /></b>
+    	<b th:if="${rankingList.size() != 0}">～ランキング～<br /></b>
+    	<table th:if="${rankingList.size() != 0}" border="1" cellspacing="0" cellpadding="2" bgcolor="white">
+			<tr th:each="rankingInfo : ${rankingList}">
+				<td>
+					<font color="black" size="5">
+					<span th:text="${rankingInfo.ranking}"></span>位
+				</font>
+				</td>
+				<td>
+					<font color="black" size="5">
+					<span th:text="${rankingInfo.keyword1}"></span>
+					×
+					<span th:text="${rankingInfo.keyword2}"></span>
+					</font>
+				</td>
+				<td>
+					<button type="submit" name="research_btn" th:value="${rankingInfo.matchingScoreId}" class="research_btn" ></button>
+				</td>
+			</tr>
+		</table>
+		<br />
+    </form>
+  	<form th:action="@{/home_first}" method="get">
+      	<input type="submit" value="" class="home_btn" />
+    </form>
+    </div>
+  </body>
+</html>

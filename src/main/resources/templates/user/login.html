@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>ログイン</title>
+  </head>
+  <body class="user">
+    <div align="center" class="locate_center">
+    <h1>自動マッチング検索アプリケーション</h1>
+  	<h2><font color="black">ログイン</font></h2>
+  	<b>※　は入力必須です。</b>
+    <form th:action="@{/user_act}" th:object="${userForm}" method="post">
+    <p th:errors="*{all}" class="error-message"></p>
+    	<table>
+			<tr>
+				<th>ユーザーID　<font color="red">※</font></th>
+				<td colspan="2" align="left"><input type="text" th:field="*{userId}" th:errorclass="error-input" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<th>パスワード　<font color="red">※</font></th>
+				<td colspan="2" align="left"><input type="password" th:field="*{password}" th:errorclass="error-input" maxlength="10"/></td>
+			</tr>
+		</table>
+		<br />
+      	<input type="submit" name="login_btn" value="" class="login_btn" />
+		<br /><br />
+		<h3 id="h3">初めての方はユーザ登録をしてください。</h3>
+      	<input type="submit" name="user_btn" value="" class="user_btn" />
+    </form>
+    </div>
+  </body>
+</html>
